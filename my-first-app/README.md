@@ -305,3 +305,66 @@ Navbar.defaultProps = {
     // aboutText: 'Set string here'
     aboutText: 'About'
 };
+
+7.Understanding State _ Handling Events in React
+-------------------------------------------------------------------------------------
+create 1 new js file in components folder TextForm.js
+
+type rfc inside TextForm.js to load react components
+
+go to https://getbootstrap.com/docs/5.3/forms/form-control/ and select form & place inside TextForm.js
+
+
+TextForm.js
+-------------------------------------
+import React, { useState } from 'react'
+
+export default function TextForm(props) {
+
+    const handleUpClick = () => {
+        console.log("Uppercase was clicked.." + text);
+        let newText = text.toUpperCase();
+        setText(newText);
+    }
+
+    const handleOnChange = (event) => {
+        console.log("On changes");
+        setText(event.target.value);
+    }
+
+    const [text, setText] = useState("Enter the text here..");
+
+    return (
+        <div>
+            <h2>{props.heading}</h2>
+            <div className="mb-3">
+                <textarea className="form-control" id="myBox" rows="8" value={text} onChange={handleOnChange} /> 
+            </div>
+            <button type="button" className="btn btn-primary" onClick={handleUpClick}>Convert To Upper Case</button>
+        </div>
+    )
+}
+
+NOTE : listen to onChange is necessary because I can't type and need to change state
+
+App.js
+-------------------------------------
+import logo from './logo.svg';
+import './App.css';
+import Navbar from './components/Navbar';
+import TextForm from './components/TextForm';
+
+function App() {
+  return (
+    <>
+      {/* <Navbar title = "TextUtils" aboutText = "About TextUtils"/> */}
+      {/* <Navbar/> */}
+      <Navbar title = "TextUtils"/>
+      <div className="container my-3">
+        <TextForm heading="Enter The Text To Analyze" />
+      </div>
+    </>
+  );
+}
+
+export default App; 
