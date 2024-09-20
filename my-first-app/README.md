@@ -645,3 +645,95 @@ export default function About() {
         </div>
     )
 }
+
+
+11.Exercise 1_ Solutions   Shoutouts _ Complete React
+-------------------------------------------------------------------------------------
+Enable TextForm components from app.js
+
+app.js
+----------------
+import logo from './logo.svg';
+import './App.css';
+import Navbar from './components/Navbar';
+import TextForm from './components/TextForm';
+import About from './components/About';
+
+function App() {
+  return (
+    <>
+      {/* <Navbar title = "TextUtils" aboutText = "About TextUtils"/> */}
+      {/* <Navbar/> */}
+      <Navbar title = "TextUtils"/>
+      <div className="container my-3">
+        <TextForm heading="Enter The Text To Analyze" />
+        {/* <About/> */}
+      </div>
+    </>
+  );
+}
+
+export default App;
+
+TextForm.js
+----------------
+import React, { useState } from 'react'
+
+export default function TextForm(props) {
+
+    const handleUpperClick = () => {
+        //console.log("Uppercase was clicked.." + text);
+        let newText = text.toUpperCase();
+        setText(newText);
+    }
+
+    const handleLowerClick = () => {
+        let newText = text.toLowerCase();
+        setText(newText);
+    }
+
+    const handleOnChange = (event) => {
+        //console.log("On changes");
+        setText(event.target.value);
+    }
+
+    const handleClearText = (event) => {
+        setText('');
+    }
+
+    const handleCopyText = (e) => {
+        navigator.clipboard.writeText(text)
+    }
+
+    const handleRemoveSpaces = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "));
+    }
+
+    const [text, setText] = useState('');
+
+    return (
+        <>
+            <div className="container">
+                <h2>{props.heading}</h2>
+                <div className="mb-3">
+                    <textarea className="form-control" id="myBox" rows="8" value={text} onChange={handleOnChange} />
+                </div>
+                <button type="button" className="btn btn-primary mx-2" onClick={handleUpperClick} >Convert To Upper Case</button>
+                <button type="button" className="btn btn-primary mx-2" onClick={handleLowerClick}>Convert To Lower Case</button>
+                <button type="button" className="btn btn-primary mx-2" onClick={handleClearText}>Clear Text</button>
+                <button type="button" className="btn btn-primary mx-2" onClick={handleCopyText}>Copy Text</button>
+                <button type="button" className="btn btn-primary mx-2" onClick={handleRemoveSpaces}>Remove Extra Spaces</button>
+
+            </div>
+            <div className="container my-3">
+                <h1>Your Text Summary</h1>
+                <p>{text.split(" ").length} Words and {text.length} characters</p>
+                <p>{0.008 * text.split(" ").length} Minutes read</p>
+                <h2>Preview</h2>
+                <p>{text}</p>
+            </div>
+        </>
+    )
+}
+
