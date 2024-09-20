@@ -901,3 +901,18 @@ Navbar.defaultProps = {
 
 12.3 : add dark mode
 -------------------------------------------
+
+16.React Router Setup Usage
+-------------------------------------------
+prave@LAPTOP-ETOVFQHV MINGW64 /c/React-Js/my-first-app (create_text_utils)
+$ git checkout react_router
+Switched to a new branch 'react_router'
+branch 'react_router' set up to track 'origin/react_router'.
+
+prave@LAPTOP-ETOVFQHV MINGW64 /c/React-Js/my-first-app (react_router)
+
+install react router Dom
+
+C:\React-Js\my-first-app> npm i react-router-dom
+
+
